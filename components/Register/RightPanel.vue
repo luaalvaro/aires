@@ -15,6 +15,7 @@
         placeholder="Email"
         class="c-rightpanel-form__input"
         id="email"
+        v-model="email"
       />
 
       <label class="c-rightpanel-form__label">Senha</label>
@@ -22,30 +23,20 @@
         type="password"
         placeholder="Senha"
         class="c-rightpanel-form__input"
+        v-model="pass"
       />
 
       <label class="c-rightpanel-form__label">Confirme sua senha</label>
       <input
         type="password"
-        placeholder="Senha"
+        placeholder="Repita sua senha"
         class="c-rightpanel-form__input"
+        v-model="pass2"
       />
 
-      <div class="c-rightpanel-form-actions">
-        <div class="c-rightpanel-form-actions-keepconn">
-          <input type="checkbox" checked />
-          <label class="c-rightpanel-form-actions-keepconn__label"
-            >Continuar conectado
-          </label>
-        </div>
-        <a href="#">Esqueceu sua senha?</a>
-      </div>
-
-      <input
-        value="Criar conta"
-        type="submit"
-        class="c-rightpanel-form__button"
-      />
+      <button class="c-rightpanel-form__button" @click="handleSubmit">
+        Criar conta
+      </button>
     </form>
 
     <p class="c-rightpanel__bottomaction">
@@ -60,11 +51,47 @@
 </template>
 
 <script>
+import { checkInputs } from "../../utils/ValidationInputs";
 export default {
-  props: {
-    email: "",
-    pass: "",
-    pass2: "",
+  data() {
+    return {
+      email: "",
+      pass: "",
+      pass2: "",
+    };
+  },
+  methods: {
+    handleSubmit(event) {
+      event.preventDefault();
+
+      let error = checkInputs(this.email, this.pass, this.pass2);
+
+      if (error) {
+        return alert(error);
+      }
+
+      //Verificando users do local storage
+
+      if (!localStorage.getItem("data")) {
+        localStorage.setItem("data", JSON.stringify({ users: [] }));
+      }
+
+      const data = JSON.parse(localStorage.getItem("data"));
+
+      const id = Date.now();
+
+      data.users.push({
+        id: id,
+        email: this.email,
+        pass: this.pass,
+      });
+
+      localStorage.setItem("data", JSON.stringify(data));
+
+      sessionStorage.setItem("token", id);
+
+      window.location.replace("/");
+    },
   },
 };
 </script>

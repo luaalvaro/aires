@@ -12,18 +12,24 @@
 
     <form class="c-rightpanel-form">
       <label class="c-rightpanel-form__label">Email</label>
-      <input type="text" placeholder="Email" class="c-rightpanel-form__input" />
+      <input
+        type="text"
+        placeholder="Email"
+        class="c-rightpanel-form__input"
+        v-model="email"
+      />
 
       <label class="c-rightpanel-form__label">Senha</label>
       <input
         type="password"
         placeholder="Senha"
         class="c-rightpanel-form__input"
+        v-model="pass"
       />
 
       <div class="c-rightpanel-form-actions">
         <div class="c-rightpanel-form-actions-keepconn">
-          <input type="checkbox" checked />
+          <input type="checkbox" />
           <label class="c-rightpanel-form-actions-keepconn__label"
             >Continuar conectado
           </label>
@@ -31,7 +37,9 @@
         <a href="#">Esqueceu sua senha?</a>
       </div>
 
-      <input type="submit" value="Acessar" class="c-rightpanel-form__button" />
+      <button class="c-rightpanel-form__button" @click="handleLogin">
+        Acessar
+      </button>
     </form>
     <p class="c-rightpanel__bottomaction">
       Não possui uma conta?
@@ -41,7 +49,41 @@
 </template>
 
 <script>
+import { checkInputs } from "../../utils/ValidationInputs";
+
 export default {
   name: "RightPanel",
+  data() {
+    return {
+      email: "",
+      pass: "",
+    };
+  },
+  methods: {
+    handleLogin(event) {
+      event.preventDefault();
+
+      let error = checkInputs(this.email, this.pass);
+
+      if (error) {
+        return alert(error);
+      }
+
+      if (!localStorage.getItem("data")) {
+        localStorage.setItem("data", JSON.stringify({ users: [] }));
+      }
+
+      const data = JSON.parse(localStorage.getItem("data"));
+
+      const user = data.users.filter((user) => user.email === this.email);
+
+      if (user.length === 0) return alert("Nenhum usuário encontrado!");
+
+      const id = user[0].id;
+
+      sessionStorage.setItem("token", id);
+      window.location.replace("/");
+    },
+  },
 };
 </script>

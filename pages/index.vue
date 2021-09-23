@@ -1,19 +1,16 @@
 <template>
-  <div class="c">
-    <LeftPanel />
-    <RightPanel />
-  </div>
+  <h1>dashboard</h1>
 </template>
 
 <script>
-name: "Login";
-import LeftPanel from "../components/Login/LeftPanel.vue";
-import RightPanel from "../components/Login/RightPanel.vue";
-
 export default {
-  components: { LeftPanel, RightPanel },
+  mounted: () => {
+    const token = sessionStorage.getItem("token");
+
+    if (!token) {
+      window.location.replace("/login");
+    }
+  },
+  created: () => {},
 };
 </script>
-
-<style src="../components/styles/style.scss" lang="scss">
-</style>

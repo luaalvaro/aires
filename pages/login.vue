@@ -1,14 +1,14 @@
 <template>
   <div class="c">
-    <left-panel />
-    <right-panel />
+    <LeftPanel />
+    <RightPanel />
   </div>
 </template>
 
 <script>
-name: "Register";
-import LeftPanel from "../components/Register/LeftPanel.vue";
-import RightPanel from "../components/Register/RightPanel.vue";
+name: "Login";
+import LeftPanel from "../components/Login/LeftPanel.vue";
+import RightPanel from "../components/Login/RightPanel.vue";
 
 export default {
   components: { LeftPanel, RightPanel },
