@@ -1,13 +1,12 @@
 .c-rightpanel {
   width: 100%;
-  min-width: 560px;
+  min-width: 325px;
   display: flex;
   flex-direction: column;
-
+  padding: 50px 25px 0 25px;
   align-items: center;
-
-  padding-top: 50px;
-
+  transition: all 1s ease-in-out;
+  
   .c-rightpanel-header {
     width: 100%;
     max-width: 428px;
@@ -114,4 +113,31 @@
   .c-rightpanel__bottomaction--pt {
     margin-top: 30px;
   }
+
+  @media screen and (max-width: 375px) {
+    width: 100vw;  
+    padding: 0 25px;
+
+      .c-rightpan+el-header {
+        .c-rightpanel-header__logo {
+          padding: 0;
+          margin: 25px auto;
+          width: 45px;
+          height: 45px;
+        }
+
+        .c-rightpanel-header__title {
+          font-size: 20px;
+          margin-bottom: 10px;
+        }
+
+        .c-rightpanel-header__subtitle {
+          font-size: 14px;
+        }
+      }
+
+      .c-rightpanel-form {
+        max-width: 325px;
+      }
+    }
 }

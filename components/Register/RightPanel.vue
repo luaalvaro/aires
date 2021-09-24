@@ -41,11 +41,11 @@
 
     <p class="c-rightpanel__bottomaction">
       Já possui uma conta?
-      <nuxt-link to="/">Clique para acessar</nuxt-link>
+      <nuxt-link to="/login">Clique para acessar</nuxt-link>
     </p>
 
     <p class="c-rightpanel__bottomaction c-rightpanel__bottomaction--pt">
-      <nuxt-link to="/">Esqueceu sua senha?</nuxt-link>
+      <nuxt-link to="#">Esqueceu sua senha?</nuxt-link>
     </p>
   </div>
 </template>

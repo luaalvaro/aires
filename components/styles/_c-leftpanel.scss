@@ -3,4 +3,13 @@
     max-width: 56%;
     min-height: 100vh;
     background: url("./assets/model.png") center center / cover;
+    transition: all 1s ease-in-out;
+
+    @media screen and (max-width: 600px) {
+        display: none;
+    }
+
+    @media screen and (max-width: 800px) {
+        max-width: 30%;
+    }
 }

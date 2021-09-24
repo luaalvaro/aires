@@ -1,9 +1,15 @@
 <template>
-  <h1>dashboard</h1>
+  <div>
+    <h2>Seja bem vindo!</h2>
+    <a href="#" @click="logout">Logout</a>
+  </div>
 </template>
 
 <script>
 export default {
+  data() {
+    return {};
+  },
   mounted: () => {
     const token = sessionStorage.getItem("token");
 
@@ -11,6 +17,11 @@ export default {
       window.location.replace("/login");
     }
   },
-  created: () => {},
+  methods: {
+    logout() {
+      sessionStorage.removeItem("token");
+      window.location.replace("/login");
+    },
+  },
 };
 </script>
