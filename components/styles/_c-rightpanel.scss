@@ -5,7 +5,7 @@
   flex-direction: column;
   padding: 50px 25px 0 25px;
   align-items: center;
-  transition: all 1s ease-in-out;
+  transition: all .5s ease-in-out;
   
   .c-rightpanel-header {
     width: 100%;
@@ -114,19 +114,20 @@
     margin-top: 30px;
   }
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 400px) {
     width: 100vw;  
-    padding: 0 25px;
+    padding: 25px;
 
-      .c-rightpan+el-header {
+      .c-rightpanel-header{
         .c-rightpanel-header__logo {
           padding: 0;
-          margin: 25px auto;
-          width: 45px;
-          height: 45px;
+          margin: 0 auto;
+          width: 72px;
+          height: 72px;
         }
 
         .c-rightpanel-header__title {
+          margin-top: 30px;
           font-size: 20px;
           margin-bottom: 10px;
         }

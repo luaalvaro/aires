@@ -78,6 +78,11 @@ export default {
 
       const data = JSON.parse(localStorage.getItem("data"));
 
+      const user = data.users.filter((user) => user.email === this.email);
+
+      if (user.length !== 0)
+        return alert("Este email já está cadastrado, faça login!");
+
       const id = Date.now();
 
       data.users.push({

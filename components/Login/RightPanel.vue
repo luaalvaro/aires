@@ -79,6 +79,8 @@ export default {
 
       if (user.length === 0) return alert("Nenhum usuário encontrado!");
 
+      if (user[0].pass !== this.pass) return alert("Senha incorreta");
+
       const id = user[0].id;
 
       sessionStorage.setItem("token", id);
